@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack serve --open",
+    "build": "webpack",
+    "deploy-gh": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages",
+    "deploy": "git push origin main && git push origin :gh-pages && git subtree push --prefix dist origin gh-pages",
+    "deploy-gh-init": "git push origin && git subtree push --prefix dist origin gh-pages"
   },
   "repository": {
     "type": "git",
@@ -15,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/Shannqa/image-slider/issues"
   },
-  "homepage": "https://github.com/Shannqa/image-slider#readme"
+  "homepage": "https://github.com/Shannqa/image-slider#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.2",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
