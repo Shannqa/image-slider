@@ -8,6 +8,13 @@ import imagesrc4 from './manuel-meurisse-EuCll-F5atI-unsplash.jpg';
 import imagesrc5 from './milan-popovic-sw1AJnAlZ70-unsplash.jpg';
 import imagesrc6 from './pedro-lastra-F0dmGPe2KG0-unsplash.jpg';
 import imagesrc7 from './peter-conlan-LEgwEaBVGMo-unsplash.jpg';
+import arrownextsrc from './navigate_next_black_24dp.svg';
+import arrowprevioussrc from './navigate_before_black_24dp.svg';
+import circleoutlinesrc from './panorama_fish_eye_black_18dp.svg';
+import circlefullsrc from './lens_black_24dp.svg';
+
+let currentSlide = 0;
+
 
 function createImages() {
     const img0 = new Image();
@@ -26,9 +33,9 @@ function createImages() {
     img5.src = imagesrc5;
     img6.src = imagesrc6;
     img7.src = imagesrc7;
+
     const body = document.querySelector("body");
-    const container = document.createElement("div");
-    container.classList.add("container");
+    const container = document.querySelector(".container");
     container.appendChild(img0);
     container.appendChild(img1);
     container.appendChild(img2);
@@ -37,18 +44,74 @@ function createImages() {
     container.appendChild(img5);
     container.appendChild(img6);
     container.appendChild(img7);
-    body.appendChild(container);
 }
 
 function createDom() {
-    
+    const body = document.querySelector("body");
+    const main = document.createElement("div");
+    const container = document.createElement("div");
+    const frame = document.createElement("div");
+    main.classList.add("main");
+    container.classList.add("container");
+    frame.classList.add("frame");
+
+    //navigation
+    const arrowNext = new Image();
+    const arrowPrevious = new Image();
+    arrowNext.src = arrownextsrc;
+    arrowPrevious.src = arrowprevioussrc;
+
+    arrowNext.addEventListener("click", () => {
+       showSlide(currentSlide + 1, "next");  
+    });
+
+    arrowPrevious.addEventListener("click", () => {
+        showSlide(currentSlide - 1, "previous");  
+     });
+
+
+    body.appendChild(main);
+    main.appendChild(arrowPrevious);
+    main.appendChild(frame);
+    main.appendChild(arrowNext);
+    frame.appendChild(container);
+
+    createImages();
+
+    //show slide
+    container.childNodes[currentSlide].style.display = "block";
+}
+
+function showSlide(n, action) {
+    const container = document.querySelector(".container");
+    switch (action) {
+        case "next":
+            if (n > 7 ) {
+                return;
+            } else {
+                container.childNodes[n-1].style.display = "none";
+                currentSlide = n;
+                container.childNodes[currentSlide].style.display = "block";
+            } 
+        break;
+        case "previous":
+            if (n < 1) {
+                return;
+            } else {
+            container.childNodes[n + 1].style.display = "none";
+            currentSlide = n;
+            container.childNodes[currentSlide].style.display = "block";
+            }
+        break;
+    }
 
 }
 
 
 
-createImages();
+
 createDom();
+showSlide(0)
 
 
 
