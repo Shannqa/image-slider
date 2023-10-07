@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
@@ -13,8 +14,6 @@ import imagesrc6 from "./assets/pedro-lastra-F0dmGPe2KG0-unsplash.jpg";
 import imagesrc7 from "./assets/peter-conlan-LEgwEaBVGMo-unsplash.jpg";
 import arrownextsrc from "./navigate_next_black_24dp.svg";
 import arrowprevioussrc from "./navigate_before_black_24dp.svg";
-import circleoutlinesrc from "./panorama_fish_eye_black_18dp.svg";
-import circlefullsrc from "./lens_black_24dp.svg";
 
 // eslint-disable-next-line prefer-const
 let currentSlide = 0;
@@ -50,7 +49,10 @@ function createImages() {
 
 function showSlide(action) {
   const container = document.querySelector(".container");
+  const dotsDiv = document.querySelector(".dotsDiv");
   const imgNodes = container.childNodes;
+  const dotNodes = dotsDiv.childNodes;
+  dotNodes[currentSlide].classList.remove("active");
 
   if (action === "next") {
     if (currentSlide === 7) {
@@ -68,6 +70,7 @@ function showSlide(action) {
   imgNodes.forEach((img) => {
     img.style.transform = `translateX(${currentSlide * -100}%)`;
   });
+  dotNodes[currentSlide].classList.add("active");
 }
 
 function createDom() {
@@ -79,7 +82,7 @@ function createDom() {
   container.classList.add("container");
   frame.classList.add("frame");
 
-  // navigation
+  // navigation - arrows
   const arrowNext = new Image();
   const arrowPrevious = new Image();
   arrowNext.src = arrownextsrc;
@@ -103,8 +106,16 @@ function createDom() {
 
   createImages();
 
-  // show slide
-  //   container.childNodes[currentSlide].style.display = "block";
+  // navigation - dots
+  const dotsDiv = document.createElement("div");
+  dotsDiv.classList.add("dotsDiv");
+  for (let i = 0; i < 8; i++) {
+    const dotSpan = document.createElement("span");
+    dotSpan.classList.add("dot");
+    dotsDiv.appendChild(dotSpan);
+  }
+
+  body.appendChild(dotsDiv);
 }
 
 createDom();

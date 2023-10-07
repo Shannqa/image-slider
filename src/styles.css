@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .main {
   display: flex;
   justify-content: center;
@@ -29,4 +35,17 @@
 
 .arrow {
   z-index: 1;
+}
+
+.dot {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: rgb(167, 167, 255);
+  display: inline-block;
+  margin: 20px 5px;
+}
+
+.active {
+  background-color: rgb(92, 92, 244);
 }
