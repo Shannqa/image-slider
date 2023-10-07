@@ -66,7 +66,7 @@ function showSlide(action, id) {
     } else {
       currentSlide -= 1;
     }
-  } else {
+  } else if (action === "show"){
     currentSlide = id;
   }
   imgNodes.forEach((img) => {
@@ -114,7 +114,7 @@ function createDom() {
   for (let i = 0; i < 8; i++) {
     const dotSpan = document.createElement("span");
     dotSpan.classList.add("dot");
-    dotSpan.addEventListener("click", () => showSlide(undefined, i));
+    dotSpan.addEventListener("click", () => showSlide("show", i));
     dotsDiv.appendChild(dotSpan);
   }
 
@@ -122,7 +122,7 @@ function createDom() {
 }
 
 createDom();
-showSlide(undefined, 0);
+showSlide("show", 0);
 
 /* Photo by <a href="https://unsplash.com/@manuelmeurisse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Manuel Meurisse</a> on <a href="https://unsplash.com/photos/EuCll-F5atI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 Photo by <a href="https://unsplash.com/@itsmiki5?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Milan Popovic</a> on <a href="https://unsplash.com/photos/sw1AJnAlZ70?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
