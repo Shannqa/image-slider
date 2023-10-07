@@ -47,7 +47,7 @@ function createImages() {
   container.appendChild(img7);
 }
 
-function showSlide(action) {
+function showSlide(action, id) {
   const container = document.querySelector(".container");
   const dotsDiv = document.querySelector(".dotsDiv");
   const imgNodes = container.childNodes;
@@ -66,6 +66,8 @@ function showSlide(action) {
     } else {
       currentSlide -= 1;
     }
+  } else {
+    currentSlide = id;
   }
   imgNodes.forEach((img) => {
     img.style.transform = `translateX(${currentSlide * -100}%)`;
@@ -112,6 +114,7 @@ function createDom() {
   for (let i = 0; i < 8; i++) {
     const dotSpan = document.createElement("span");
     dotSpan.classList.add("dot");
+    dotSpan.addEventListener("click", () => showSlide(undefined, i));
     dotsDiv.appendChild(dotSpan);
   }
 
@@ -119,7 +122,7 @@ function createDom() {
 }
 
 createDom();
-showSlide();
+showSlide(undefined, 0);
 
 /* Photo by <a href="https://unsplash.com/@manuelmeurisse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Manuel Meurisse</a> on <a href="https://unsplash.com/photos/EuCll-F5atI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 Photo by <a href="https://unsplash.com/@itsmiki5?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Milan Popovic</a> on <a href="https://unsplash.com/photos/sw1AJnAlZ70?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
