@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import css from "./styles.css";
 
@@ -14,6 +16,7 @@ import arrowprevioussrc from "./navigate_before_black_24dp.svg";
 import circleoutlinesrc from "./panorama_fish_eye_black_18dp.svg";
 import circlefullsrc from "./lens_black_24dp.svg";
 
+// eslint-disable-next-line prefer-const
 let currentSlide = 0;
 
 function createImages() {
@@ -34,7 +37,6 @@ function createImages() {
   img6.src = imagesrc6;
   img7.src = imagesrc7;
 
-  const body = document.querySelector("body");
   const container = document.querySelector(".container");
   container.appendChild(img0);
   container.appendChild(img1);
@@ -46,21 +48,26 @@ function createImages() {
   container.appendChild(img7);
 }
 
-function showSlide(n, action) {
-    const container = document.querySelector(".container");
-    if (action === "next") {
-        if (n < 7) {
-          container.childNodes[n - 1].style.display = "none";
-          currentSlide = n;
-          container.childNodes[currentSlide].style.display = "block";
-        }
-    } else if (action === "previous") {
-        if (n > 1) {
-          container.childNodes[n + 1].style.display = "none";
-          currentSlide = n;
-          container.childNodes[currentSlide].style.display = "block";
-        }
+function showSlide(action) {
+  const container = document.querySelector(".container");
+  const imgNodes = container.childNodes;
+
+  if (action === "next") {
+    if (currentSlide === 7) {
+      currentSlide = 0;
+    } else {
+      currentSlide += 1;
     }
+  } else if (action === "previous") {
+    if (currentSlide === 0) {
+      currentSlide = 7;
+    } else {
+      currentSlide -= 1;
+    }
+  }
+  imgNodes.forEach((img) => {
+    img.style.transform = `translateX(${currentSlide * -100}%)`;
+  });
 }
 
 function createDom() {
@@ -77,13 +84,15 @@ function createDom() {
   const arrowPrevious = new Image();
   arrowNext.src = arrownextsrc;
   arrowPrevious.src = arrowprevioussrc;
+  arrowNext.classList.add("arrow");
+  arrowPrevious.classList.add("arrow");
 
   arrowNext.addEventListener("click", () => {
-    showSlide(currentSlide + 1, "next");
+    showSlide("next");
   });
 
   arrowPrevious.addEventListener("click", () => {
-    showSlide(currentSlide - 1, "previous");
+    showSlide("previous");
   });
 
   body.appendChild(main);
@@ -95,11 +104,11 @@ function createDom() {
   createImages();
 
   // show slide
-  container.childNodes[currentSlide].style.display = "block";
+  //   container.childNodes[currentSlide].style.display = "block";
 }
 
 createDom();
-showSlide(0);
+showSlide();
 
 /* Photo by <a href="https://unsplash.com/@manuelmeurisse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Manuel Meurisse</a> on <a href="https://unsplash.com/photos/EuCll-F5atI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 Photo by <a href="https://unsplash.com/@itsmiki5?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Milan Popovic</a> on <a href="https://unsplash.com/photos/sw1AJnAlZ70?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
