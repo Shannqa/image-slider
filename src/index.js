@@ -1,20 +1,19 @@
 import css from './styles.css';
 
-import imagesrc0 from './alex-azabache-V83v-MYB_Z8-unsplash.jpg';
-import imagesrc1 from './ian-dooley-DuBNA1QMpPA-unsplash.jpg';
-import imagesrc2 from './johan-mouchet-Z95viY3WaZs-unsplash.jpg';
-import imagesrc3 from './kari-shea-eMzblc6JmXM-unsplash.jpg';
-import imagesrc4 from './manuel-meurisse-EuCll-F5atI-unsplash.jpg';
-import imagesrc5 from './milan-popovic-sw1AJnAlZ70-unsplash.jpg';
-import imagesrc6 from './pedro-lastra-F0dmGPe2KG0-unsplash.jpg';
-import imagesrc7 from './peter-conlan-LEgwEaBVGMo-unsplash.jpg';
+import imagesrc0 from './assets/alex-azabache-V83v-MYB_Z8-unsplash.jpg';
+import imagesrc1 from './assets/ian-dooley-DuBNA1QMpPA-unsplash.jpg';
+import imagesrc2 from './assets/johan-mouchet-Z95viY3WaZs-unsplash.jpg';
+import imagesrc3 from './assets/kari-shea-eMzblc6JmXM-unsplash.jpg';
+import imagesrc4 from './assets/manuel-meurisse-EuCll-F5atI-unsplash.jpg';
+import imagesrc5 from './assets/milan-popovic-sw1AJnAlZ70-unsplash.jpg';
+import imagesrc6 from './assets/pedro-lastra-F0dmGPe2KG0-unsplash.jpg';
+import imagesrc7 from './assets/peter-conlan-LEgwEaBVGMo-unsplash.jpg';
 import arrownextsrc from './navigate_next_black_24dp.svg';
 import arrowprevioussrc from './navigate_before_black_24dp.svg';
 import circleoutlinesrc from './panorama_fish_eye_black_18dp.svg';
 import circlefullsrc from './lens_black_24dp.svg';
 
 let currentSlide = 0;
-
 
 function createImages() {
     const img0 = new Image();
