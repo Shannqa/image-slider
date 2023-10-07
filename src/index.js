@@ -52,7 +52,10 @@ function showSlide(action, id) {
   const dotsDiv = document.querySelector(".dotsDiv");
   const imgNodes = container.childNodes;
   const dotNodes = dotsDiv.childNodes;
-  dotNodes[currentSlide].classList.remove("active");
+  const creditsDiv = document.querySelector(".credits-div");
+  const creditsNodes = creditsDiv.childNodes;
+    dotNodes[currentSlide].classList.remove("active");
+    creditsNodes[currentSlide].classList.remove("visible");
 
   if (action === "next") {
     if (currentSlide === 7) {
@@ -73,6 +76,7 @@ function showSlide(action, id) {
     img.style.transform = `translateX(${currentSlide * -100}%)`;
   });
   dotNodes[currentSlide].classList.add("active");
+  creditsNodes[currentSlide].classList.add("visible");
 }
 
 function createDom() {
@@ -117,8 +121,42 @@ function createDom() {
     dotSpan.addEventListener("click", () => showSlide("show", i));
     dotsDiv.appendChild(dotSpan);
   }
-
   body.appendChild(dotsDiv);
+  
+  // navigation - credits
+  const creditsDiv = document.createElement("div");
+  creditsDiv.classList.add("credits-div");
+  
+  const imgCredits = [
+    ["Manuel Meurisse", "https://unsplash.com/@manuelmeurisse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
+    ["Milan Popovic", "https://unsplash.com/@itsmiki5?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
+    ["Pedro Lastra", "https://unsplash.com/@peterlaster?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
+    ["Kari Shea", "https://unsplash.com/@karishea?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
+    ["Alex Azabache", "https://unsplash.com/@alexazabache?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"], 
+    ["ian dooley", "https://unsplash.com/@sadswim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
+    ["Peter Conlan", "https://unsplash.com/@peterconlan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
+    ["Johan Mouchet", "https://unsplash.com/@johanmouchet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"]
+    ];
+  
+  imgCredits.forEach((img, index) => {
+    const creditsP = document.createElement("p");
+    creditsP.dataset = index;
+    const creditsSpan1 = document.createElement("span");
+    creditsSpan1.textContent = "Photo by ";
+    const creditsA = document.createElement("a");
+    creditsA.setAttribute("href", `${img[1]}`);
+    creditsA.textContent = img[0];
+    const creditsSpan2 = document.createElement("span");
+    creditsSpan2.textContent = " on Unsplash.";
+    creditsP.appendChild(creditsSpan1);
+    creditsP.appendChild(creditsA);
+    creditsP.appendChild(creditsSpan2);
+    creditsDiv.appendChild(creditsP);
+
+  });
+
+  
+  body.appendChild(creditsDiv);
 }
 
 createDom();

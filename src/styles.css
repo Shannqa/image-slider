@@ -49,3 +49,11 @@ body {
 .active {
   background-color: rgb(92, 92, 244);
 }
+
+.visible {
+  display: block;
+}
+
+.credits-div > p {
+  display: none;
+}
