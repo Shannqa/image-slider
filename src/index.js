@@ -18,6 +18,7 @@ import arrowprevioussrc from "./navigate_before_black_24dp.svg";
 
 // eslint-disable-next-line prefer-const
 let currentSlide = 0;
+let slideTimeout;
 
 function createImages() {
   const img0 = new Image();
@@ -78,16 +79,22 @@ function showSlide(action, id) {
   });
   dotNodes[currentSlide].classList.add("active");
   creditsNodes[currentSlide].classList.add("visible");
+
+  clearTimeout(slideTimeout);
+  slideTimeout = setTimeout(showSlide, 10000, "next");
 }
 
 function createDom() {
   const body = document.querySelector("body");
+  const header = document.createElement("div");
   const main = document.createElement("div");
   const container = document.createElement("div");
   const frame = document.createElement("div");
   main.classList.add("main");
+  header.classList.add("header");
   container.classList.add("container");
   frame.classList.add("frame");
+  header.textContent = "Image Slider";
 
   // navigation - arrows
   const arrowNext = new Image();
@@ -105,6 +112,7 @@ function createDom() {
     showSlide("previous");
   });
 
+  body.appendChild(header);
   body.appendChild(main);
   main.appendChild(arrowPrevious);
   main.appendChild(frame);
@@ -181,17 +189,18 @@ function createDom() {
   });
 
   body.appendChild(creditsDiv);
+
+  // footer
+  const footer = document.createElement("div");
+  const footerSpan = document.createElement("span");
+  footerSpan.textContent = "Website created by ";
+  const footerA = document.createElement("a");
+  footerA.textContent = "Shannqa";
+  footerA.setAttribute("href", "https://shannqa.github.io/homepage/index.html");
+  footer.appendChild(footerSpan);
+  footer.appendChild(footerA);
+  body.appendChild(footer);
 }
 
 createDom();
 showSlide("show", 0);
-
-/* Photo by <a href="https://unsplash.com/@manuelmeurisse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Manuel Meurisse</a> on <a href="https://unsplash.com/photos/EuCll-F5atI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@itsmiki5?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Milan Popovic</a> on <a href="https://unsplash.com/photos/sw1AJnAlZ70?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@peterlaster?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Pedro Lastra</a> on <a href="https://unsplash.com/photos/F0dmGPe2KG0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@karishea?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kari Shea</a> on <a href="https://unsplash.com/photos/eMzblc6JmXM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@alexazabache?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alex Azabache</a> on <a href="https://unsplash.com/photos/V83v-MYB_Z8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@sadswim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ian dooley</a> on <a href="https://unsplash.com/photos/DuBNA1QMpPA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@peterconlan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Peter Conlan</a> on <a href="https://unsplash.com/photos/LEgwEaBVGMo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-Photo by <a href="https://unsplash.com/@johanmouchet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Johan Mouchet</a> on <a href="https://unsplash.com/photos/Z95viY3WaZs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  */
