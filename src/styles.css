@@ -37,23 +37,34 @@ body {
   z-index: 1;
 }
 
+.dots-div {
+  margin-top: 10px;
+  height: 1.2rem;
+}
+
 .dot {
   height: 20px;
   width: 20px;
   border-radius: 50%;
   background-color: rgb(167, 167, 255);
   display: inline-block;
-  margin: 20px 5px;
+  margin: 0px 5px;
 }
 
 .active {
   background-color: rgb(92, 92, 244);
 }
 
-.visible {
-  display: block;
+.credits-div {
+  margin: 5px;
+  height: 1.2rem;
 }
 
-.credits-div > p {
+.credits-p {
   display: none;
+  margin: 0;
+}
+
+.visible {
+  display: block;
 }

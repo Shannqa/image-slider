@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
@@ -49,13 +50,13 @@ function createImages() {
 
 function showSlide(action, id) {
   const container = document.querySelector(".container");
-  const dotsDiv = document.querySelector(".dotsDiv");
+  const dotsDiv = document.querySelector(".dots-div");
   const imgNodes = container.childNodes;
   const dotNodes = dotsDiv.childNodes;
   const creditsDiv = document.querySelector(".credits-div");
   const creditsNodes = creditsDiv.childNodes;
-    dotNodes[currentSlide].classList.remove("active");
-    creditsNodes[currentSlide].classList.remove("visible");
+  dotNodes[currentSlide].classList.remove("active");
+  creditsNodes[currentSlide].classList.remove("visible");
 
   if (action === "next") {
     if (currentSlide === 7) {
@@ -69,7 +70,7 @@ function showSlide(action, id) {
     } else {
       currentSlide -= 1;
     }
-  } else if (action === "show"){
+  } else if (action === "show") {
     currentSlide = id;
   }
   imgNodes.forEach((img) => {
@@ -114,7 +115,7 @@ function createDom() {
 
   // navigation - dots
   const dotsDiv = document.createElement("div");
-  dotsDiv.classList.add("dotsDiv");
+  dotsDiv.classList.add("dots-div");
   for (let i = 0; i < 8; i++) {
     const dotSpan = document.createElement("span");
     dotSpan.classList.add("dot");
@@ -122,25 +123,50 @@ function createDom() {
     dotsDiv.appendChild(dotSpan);
   }
   body.appendChild(dotsDiv);
-  
+
   // navigation - credits
   const creditsDiv = document.createElement("div");
   creditsDiv.classList.add("credits-div");
-  
+
   const imgCredits = [
-    ["Manuel Meurisse", "https://unsplash.com/@manuelmeurisse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
-    ["Milan Popovic", "https://unsplash.com/@itsmiki5?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
-    ["Pedro Lastra", "https://unsplash.com/@peterlaster?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
-    ["Kari Shea", "https://unsplash.com/@karishea?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
-    ["Alex Azabache", "https://unsplash.com/@alexazabache?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"], 
-    ["ian dooley", "https://unsplash.com/@sadswim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
-    ["Peter Conlan", "https://unsplash.com/@peterconlan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"],
-    ["Johan Mouchet", "https://unsplash.com/@johanmouchet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"]
-    ];
-  
+    [
+      "Manuel Meurisse",
+      "https://unsplash.com/@manuelmeurisse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+    [
+      "Milan Popovic",
+      "https://unsplash.com/@itsmiki5?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+    [
+      "Pedro Lastra",
+      "https://unsplash.com/@peterlaster?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+    [
+      "Kari Shea",
+      "https://unsplash.com/@karishea?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+    [
+      "Alex Azabache",
+      "https://unsplash.com/@alexazabache?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+    [
+      "ian dooley",
+      "https://unsplash.com/@sadswim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+    [
+      "Peter Conlan",
+      "https://unsplash.com/@peterconlan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+    [
+      "Johan Mouchet",
+      "https://unsplash.com/@johanmouchet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+    ],
+  ];
+
   imgCredits.forEach((img, index) => {
     const creditsP = document.createElement("p");
-    creditsP.dataset = index;
+    creditsP.dataset.id = index;
+    creditsP.classList.add("credits-p");
     const creditsSpan1 = document.createElement("span");
     creditsSpan1.textContent = "Photo by ";
     const creditsA = document.createElement("a");
@@ -152,10 +178,8 @@ function createDom() {
     creditsP.appendChild(creditsA);
     creditsP.appendChild(creditsSpan2);
     creditsDiv.appendChild(creditsP);
-
   });
 
-  
   body.appendChild(creditsDiv);
 }
 
